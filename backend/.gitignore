@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Environment variables — NEVER commit these
+.env
+.env.local
+.env.production
+
+# Firebase service account — NEVER commit this
+config/service-account.json
+*.json.key
+*firebase-adminsdk*.json
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
