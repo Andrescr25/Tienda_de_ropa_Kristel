@@ -49,7 +49,7 @@ const IconStyleWeb = () => {
     <style type="text/css">
       {`@font-face {
         font-family: 'Ionicons';
-        src: url(${require('@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Ionicons.ttf')}) format('truetype');
+        src: url('/fonts/Ionicons.ttf') format('truetype');
       }`}
     </style>
   );
