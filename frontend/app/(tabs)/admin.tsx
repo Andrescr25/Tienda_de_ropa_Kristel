@@ -269,6 +269,12 @@ function ProductsSection() {
   };
 
   const handleDelete = (id: string, name: string) => {
+    if (Platform.OS === 'web') {
+      if (window.confirm(`Deactivate "${name}"?`)) {
+        api.delete(`/products/${id}`).then(load).catch(e => alert(e.message));
+      }
+      return;
+    }
     Alert.alert('Deactivate', `Deactivate "${name}"?`, [
       { text: 'Cancel', style: 'cancel' },
       { text: 'Deactivate', style: 'destructive', onPress: async () => {
@@ -493,6 +499,12 @@ function CategoriesSection() {
   };
 
   const handleDelete = (id: string, name: string) => {
+    if (Platform.OS === 'web') {
+      if (window.confirm(`Delete category "${name}"?`)) {
+        api.delete(`/categories/${id}`).then(load).catch(e => alert(e.message));
+      }
+      return;
+    }
     Alert.alert('Delete', `Delete category "${name}"?`, [
       { text: 'Cancel', style: 'cancel' },
       { text: 'Delete', style: 'destructive', onPress: async () => {
