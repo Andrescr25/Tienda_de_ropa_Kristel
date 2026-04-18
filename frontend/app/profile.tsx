@@ -8,7 +8,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ProfileScreen() {
   const router = useRouter();
-  const { profile, clearAuth } = useAuthStore();
+  const { profile, user, clearAuth } = useAuthStore();
+  const displayUser = profile || user;
 
   const handleSignOut = async () => {
     await signOut(auth);
@@ -16,7 +17,7 @@ export default function ProfileScreen() {
     router.replace('/(tabs)');
   };
 
-  if (!profile) {
+  if (!displayUser) {
     return (
       <View style={{ flex: 1, backgroundColor: '#FCFAFA', alignItems: 'center', justifyContent: 'center' }}>
         <Text style={{ color: '#88797D' }}>You are not logged in.</Text>
@@ -30,7 +31,7 @@ export default function ProfileScreen() {
     );
   }
 
-  const initial = profile.displayName ? profile.displayName.charAt(0).toUpperCase() : '?';
+  const initial = displayUser.displayName ? displayUser.displayName.charAt(0).toUpperCase() : '?';
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#FCFAFA' }}>
@@ -44,8 +45,8 @@ export default function ProfileScreen() {
 
         {/* Avatar */}
         <View style={{ width: 100, height: 100, borderRadius: 50, backgroundColor: '#FFF0F3', alignItems: 'center', justifyContent: 'center', marginBottom: 16, overflow: 'hidden' }}>
-          {profile.photoURL ? (
-            <Image source={{ uri: profile.photoURL }} style={{ width: '100%', height: '100%' }} />
+          {displayUser.photoURL ? (
+            <Image source={{ uri: displayUser.photoURL }} style={{ width: '100%', height: '100%' }} />
           ) : (
             <Text style={{ fontSize: 40, fontWeight: '800', color: '#FF6B98' }}>{initial}</Text>
           )}
@@ -53,20 +54,20 @@ export default function ProfileScreen() {
 
         {/* Info */}
         <Text style={{ fontSize: 24, fontWeight: '800', color: '#1A1114', marginBottom: 4 }}>
-          {profile.displayName || 'Athletic User'}
+          {displayUser.displayName || 'Athletic User'}
         </Text>
         <Text style={{ fontSize: 15, color: '#88797D', marginBottom: 24 }}>
-          {profile.email}
+          {displayUser.email}
         </Text>
 
         <View style={{ backgroundColor: '#FFFFFF', width: '100%', borderRadius: 16, padding: 20, marginBottom: 32, borderColor: '#EBDDE0', borderWidth: 1 }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: 1, borderBottomColor: '#FFF0F3', paddingBottom: 16, marginBottom: 16 }}>
             <Text style={{ color: '#88797D', fontSize: 15 }}>Role</Text>
-            <Text style={{ color: '#1A1114', fontSize: 15, fontWeight: '700' }}>{profile.role || 'CUSTOMER'}</Text>
+            <Text style={{ color: '#1A1114', fontSize: 15, fontWeight: '700' }}>{profile?.role || 'CUSTOMER'}</Text>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Text style={{ color: '#88797D', fontSize: 15 }}>Customer ID</Text>
-            <Text style={{ color: '#1A1114', fontSize: 12, fontWeight: '600', maxWidth: 150 }} numberOfLines={1}>{profile.uid}</Text>
+            <Text style={{ color: '#1A1114', fontSize: 12, fontWeight: '600', maxWidth: 150 }} numberOfLines={1}>{displayUser.uid}</Text>
           </View>
         </View>
 

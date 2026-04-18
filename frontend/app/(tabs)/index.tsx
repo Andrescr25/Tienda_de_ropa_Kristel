@@ -92,7 +92,8 @@ function ProductCard({ item }: { item: any }) {
 
 export default function HomeScreen() {
   const router = useRouter();
-  const { profile } = useAuthStore();
+  const { profile, user } = useAuthStore();
+  const displayUser = profile || user;
   const { data, isLoading } = useQuery({
     queryKey: ['products', 'featured'],
     queryFn: () => api.get('/products?limit=6').then((r) => r.data.products),
@@ -107,17 +108,17 @@ export default function HomeScreen() {
           <View>
             <Text style={{ color: '#88797D', fontSize: 11, letterSpacing: 2, textTransform: 'uppercase' }}>Welcome to Bella Fitnes</Text>
             <Text style={{ color: '#1A1114', fontSize: 20, fontWeight: '700' }}>
-              {profile?.displayName?.split(' ')[0] ?? 'Beautiful'}
+              {displayUser?.displayName?.split(' ')[0] ?? 'Beautiful'}
             </Text>
           </View>
 
-          {profile ? (
+          {displayUser ? (
             <TouchableOpacity onPress={() => router.push('/profile')} activeOpacity={0.7} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: '#FFF0F3', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-              {profile.photoURL ? (
-                <Image source={{ uri: profile.photoURL }} style={{ width: '100%', height: '100%' }} />
+              {displayUser.photoURL ? (
+                <Image source={{ uri: displayUser.photoURL }} style={{ width: '100%', height: '100%' }} />
               ) : (
                 <Text style={{ fontSize: 18, fontWeight: '800', color: '#FF6B98' }}>
-                  {profile.displayName ? profile.displayName.charAt(0).toUpperCase() : '?'}
+                  {displayUser.displayName ? displayUser.displayName.charAt(0).toUpperCase() : '?'}
                 </Text>
               )}
             </TouchableOpacity>
