@@ -46,9 +46,9 @@ export default function CartScreen() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#0A0A0A' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#FCFAFA' }}>
       <View style={{ paddingHorizontal: 16, paddingTop: 16, paddingBottom: 8, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Text style={{ color: '#FFF', fontSize: 24, fontWeight: '900', letterSpacing: 3 }}>CART</Text>
+        <Text style={{ color: '#1A1114', fontSize: 24, fontWeight: '900', letterSpacing: 3 }}>CART</Text>
         {items.length > 0 && (
           <TouchableOpacity onPress={clearCart} style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
             <Ionicons name="trash-outline" size={16} color="#FF4D6A" />
@@ -63,72 +63,72 @@ export default function CartScreen() {
         contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 160 }}
         ListEmptyComponent={
           <View style={{ alignItems: 'center', justifyContent: 'center', paddingVertical: 96 }}>
-            <Ionicons name="cart-outline" size={64} color="#3A3A3A" />
-            <Text style={{ color: '#666', fontSize: 15, marginTop: 16 }}>Your cart is empty</Text>
-            <Text style={{ color: '#3A3A3A', fontSize: 13, marginTop: 4 }}>Add some products to get started</Text>
+            <Ionicons name="cart-outline" size={64} color="#D1C0C4" />
+            <Text style={{ color: '#88797D', fontSize: 15, marginTop: 16 }}>Your cart is empty</Text>
+            <Text style={{ color: '#D1C0C4', fontSize: 13, marginTop: 4 }}>Add some products to get started</Text>
           </View>
         }
         renderItem={({ item }) => (
-          <View style={{ backgroundColor: '#141414', borderColor: '#2A2A2A', borderWidth: 1, borderRadius: 16, padding: 16, marginBottom: 12, flexDirection: 'row' }}>
-            <View style={{ width: 80, height: 80, backgroundColor: '#1E1E1E', borderRadius: 12, alignItems: 'center', justifyContent: 'center', marginRight: 16 }}>
+          <View style={{ backgroundColor: '#FFFFFF', borderColor: '#EBDDE0', borderWidth: 1, borderRadius: 16, padding: 16, marginBottom: 12, flexDirection: 'row' }}>
+            <View style={{ width: 80, height: 80, backgroundColor: '#FFF0F3', borderRadius: 12, alignItems: 'center', justifyContent: 'center', marginRight: 16 }}>
               {item.imageUrl ? (
                 <Image source={{ uri: item.imageUrl }} style={{ width: 80, height: 80, borderRadius: 12 }} resizeMode="cover" />
               ) : (
-                <Ionicons name="shirt-outline" size={36} color="#3A3A3A" />
+                <Ionicons name="shirt-outline" size={36} color="#D1C0C4" />
               )}
             </View>
 
             <View style={{ flex: 1 }}>
-              <Text style={{ color: '#FFF', fontWeight: '600' }} numberOfLines={1}>{item.name}</Text>
-              <Text style={{ color: '#666', fontSize: 12, marginTop: 2 }}>Size: {item.size}</Text>
-              <Text style={{ color: '#00FF87', fontWeight: '700', marginTop: 4 }}>${item.unitPrice}</Text>
+              <Text style={{ color: '#1A1114', fontWeight: '600' }} numberOfLines={1}>{item.name}</Text>
+              <Text style={{ color: '#88797D', fontSize: 12, marginTop: 2 }}>Size: {item.size}</Text>
+              <Text style={{ color: '#FF6B98', fontWeight: '700', marginTop: 4 }}>${item.unitPrice}</Text>
 
               <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
                 <TouchableOpacity
-                  style={{ width: 32, height: 32, backgroundColor: '#1E1E1E', borderRadius: 8, borderWidth: 1, borderColor: '#2A2A2A', alignItems: 'center', justifyContent: 'center' }}
+                  style={{ width: 32, height: 32, backgroundColor: '#FFF0F3', borderRadius: 8, borderWidth: 1, borderColor: '#EBDDE0', alignItems: 'center', justifyContent: 'center' }}
                   onPress={() =>
                     item.quantity > 1
                       ? updateQuantity(item.productId, item.size, item.quantity - 1)
                       : removeItem(item.productId, item.size)
                   }
                 >
-                  <Ionicons name="remove" size={16} color="#FFF" />
+                  <Ionicons name="remove" size={16} color="#1A1114" />
                 </TouchableOpacity>
-                <Text style={{ color: '#FFF', fontWeight: '700', marginHorizontal: 16 }}>{item.quantity}</Text>
+                <Text style={{ color: '#1A1114', fontWeight: '700', marginHorizontal: 16 }}>{item.quantity}</Text>
                 <TouchableOpacity
-                  style={{ width: 32, height: 32, backgroundColor: '#1E1E1E', borderRadius: 8, borderWidth: 1, borderColor: '#2A2A2A', alignItems: 'center', justifyContent: 'center' }}
+                  style={{ width: 32, height: 32, backgroundColor: '#FFF0F3', borderRadius: 8, borderWidth: 1, borderColor: '#EBDDE0', alignItems: 'center', justifyContent: 'center' }}
                   onPress={() => updateQuantity(item.productId, item.size, item.quantity + 1)}
                 >
-                  <Ionicons name="add" size={16} color="#FFF" />
+                  <Ionicons name="add" size={16} color="#1A1114" />
                 </TouchableOpacity>
               </View>
             </View>
 
             <TouchableOpacity style={{ padding: 4 }} onPress={() => removeItem(item.productId, item.size)}>
-              <Ionicons name="close" size={20} color="#666" />
+              <Ionicons name="close" size={20} color="#88797D" />
             </TouchableOpacity>
           </View>
         )}
       />
 
       {items.length > 0 && (
-        <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, paddingHorizontal: 20, paddingBottom: 32, paddingTop: 16, backgroundColor: '#0A0A0A', borderTopWidth: 1, borderTopColor: '#2A2A2A' }}>
+        <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, paddingHorizontal: 20, paddingBottom: 32, paddingTop: 16, backgroundColor: '#FCFAFA', borderTopWidth: 1, borderTopColor: '#EBDDE0' }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 16 }}>
-            <Text style={{ color: '#666' }}>{itemCount()} item{itemCount() !== 1 ? 's' : ''}</Text>
-            <Text style={{ color: '#FFF', fontWeight: '900', fontSize: 22 }}>${total().toFixed(2)}</Text>
+            <Text style={{ color: '#88797D' }}>{itemCount()} item{itemCount() !== 1 ? 's' : ''}</Text>
+            <Text style={{ color: '#1A1114', fontWeight: '900', fontSize: 22 }}>${total().toFixed(2)}</Text>
           </View>
           <TouchableOpacity
-            style={{ backgroundColor: '#00FF87', borderRadius: 16, paddingVertical: 16, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 10 }}
+            style={{ backgroundColor: '#FF6B98', borderRadius: 16, paddingVertical: 16, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 10 }}
             onPress={handleCheckout}
             disabled={checkoutMutation.isPending}
             activeOpacity={0.85}
           >
             {checkoutMutation.isPending ? (
-              <ActivityIndicator color="#000" />
+              <ActivityIndicator color="#FFFFFF" />
             ) : (
               <>
-                <Ionicons name="card-outline" size={20} color="#000" />
-                <Text style={{ color: '#000', fontWeight: '900', fontSize: 15, letterSpacing: 2 }}>CHECKOUT</Text>
+                <Ionicons name="card-outline" size={20} color="#FFFFFF" />
+                <Text style={{ color: '#FFFFFF', fontWeight: '900', fontSize: 15, letterSpacing: 2 }}>CHECKOUT</Text>
               </>
             )}
           </TouchableOpacity>

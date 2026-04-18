@@ -13,19 +13,19 @@ function TabIcon({ icon, label, focused, badge }: { icon: IoniconName; label: st
         <Ionicons
           name={focused ? icon : (icon.replace('-outline', '') + '-outline') as IoniconName}
           size={24}
-          color={focused ? '#00FF87' : '#666666'}
+          color={focused ? '#FF6B98' : '#88797D'}
         />
         {badge != null && badge > 0 && (
           <View style={{
             position: 'absolute', top: -4, right: -8,
-            backgroundColor: '#00FF87', borderRadius: 8,
+            backgroundColor: '#FF6B98', borderRadius: 8,
             width: 16, height: 16, alignItems: 'center', justifyContent: 'center',
           }}>
-            <Text style={{ color: '#000', fontSize: 10, fontWeight: '700' }}>{badge}</Text>
+            <Text style={{ color: '#FFFFFF', fontSize: 10, fontWeight: '700' }}>{badge}</Text>
           </View>
         )}
       </View>
-      <Text style={{ fontSize: 10, marginTop: 2, fontWeight: '600', color: focused ? '#00FF87' : '#666666' }}>
+      <Text style={{ fontSize: 10, marginTop: 2, fontWeight: '600', color: focused ? '#FF6B98' : '#88797D' }}>
         {label}
       </Text>
     </View>
@@ -42,15 +42,15 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: '#141414',
-          borderTopColor: '#2A2A2A',
+          backgroundColor: '#FFFFFF',
+          borderTopColor: '#EBDDE0',
           borderTopWidth: 1,
           paddingBottom: 8,
           height: 64,
         },
         tabBarShowLabel: false,
-        tabBarActiveTintColor: '#00FF87',
-        tabBarInactiveTintColor: '#666666',
+        tabBarActiveTintColor: '#FF6B98',
+        tabBarInactiveTintColor: '#88797D',
       }}
     >
       <Tabs.Screen

@@ -13,16 +13,16 @@ module.exports = {
       colors: {
         // ── Brand Palette ──────────────────────────────────
         gs: {
-          black:    '#000000',
-          white:    '#FFFFFF',
-          green:    '#00FF87', // Signature neon green
-          'green-dim': '#00CC6A',
-          bg:       '#0A0A0A', // App background
-          card:     '#141414', // Card surface
-          surface:  '#1E1E1E', // Elevated surface
-          border:   '#2A2A2A', // Subtle borders
-          muted:    '#666666', // Secondary text
-          subtle:   '#3A3A3A', // Subtle elements
+          black:    '#FFFFFF', // Used for button texts (now white on pink)
+          white:    '#1A1114', // Used for main text (now dark)
+          green:    '#FF6B98', // Hot vibrant pink
+          'green-dim': '#E55B8B', 
+          bg:       '#FCFAFA', // Warm off-white background
+          card:     '#FFFFFF', // Pure white cards
+          surface:  '#FFF0F3', // Very light blush surface
+          border:   '#EBDDE0', // Soft borders
+          muted:    '#88797D', // Muted text
+          subtle:   '#D1C0C4', // Subtle elements
         },
       },
       fontFamily: {

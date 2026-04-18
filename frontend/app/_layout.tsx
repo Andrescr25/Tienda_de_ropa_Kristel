@@ -1,5 +1,6 @@
 import '../global.css';
 import { useEffect } from 'react';
+import { Platform } from 'react-native';
 import { Stack, useRouter, useSegments } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
@@ -40,6 +41,20 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
+// Inject Ionicons explicitly via <style> for statically exported Expo Web
+// since Expo Router hydration might miss `@expo/vector-icons` CSS.
+const IconStyleWeb = () => {
+  if (Platform.OS !== 'web') return null;
+  return (
+    <style type="text/css">
+      {`@font-face {
+        font-family: 'Ionicons';
+        src: url(${require('@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Ionicons.ttf')}) format('truetype');
+      }`}
+    </style>
+  );
+};
+
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -59,7 +74,8 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <StatusBar style="light" />
+      <IconStyleWeb />
+      <StatusBar style="dark" />
       <AuthGuard>
         <Stack screenOptions={{ headerShown: false }} initialRouteName="(tabs)">
           <Stack.Screen name="(tabs)" />

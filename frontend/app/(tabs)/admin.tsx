@@ -46,9 +46,9 @@ const DEFAULT_SIZES  = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
 // ─── Colors ───────────────────────────────────────────────────────────────────
 const C = {
-  bg: '#0A0A0A', card: '#141414', surface: '#1E1E1E', border: '#2A2A2A',
-  green: '#00FF87', white: '#FFFFFF', muted: '#666666', danger: '#FF4444',
-  yellow: '#FFD60A',
+  bg: '#FCFAFA', card: '#FFFFFF', surface: '#FFF0F3', border: '#EBDDE0',
+  green: '#FF6B98', white: '#1A1114', muted: '#88797D', danger: '#E63946',
+  yellow: '#E07A5F',
 };
 
 // ─── Small UI helpers ─────────────────────────────────────────────────────────
@@ -290,8 +290,8 @@ function ProductsSection() {
           onPress={openCreate}
           style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: C.green, borderRadius: 10, paddingHorizontal: 14, paddingVertical: 8, gap: 6 }}
         >
-          <Ionicons name="add" size={18} color="#000" />
-          <Text style={{ color: '#000', fontWeight: '700', fontSize: 13 }}>Add</Text>
+          <Ionicons name="add" size={18} color="#FFFFFF" />
+          <Text style={{ color: '#FFFFFF', fontWeight: '700', fontSize: 13 }}>Add</Text>
         </TouchableOpacity>
       </View>
 
@@ -443,8 +443,8 @@ function ProductsSection() {
                 disabled={saving || uploading}
                 style={{ backgroundColor: C.green, borderRadius: 12, paddingVertical: 15, alignItems: 'center', marginTop: 8, opacity: (saving || uploading) ? 0.6 : 1 }}
               >
-                {saving ? <ActivityIndicator color="#000" /> : (
-                  <Text style={{ color: '#000', fontWeight: '800', fontSize: 15 }}>
+                {saving ? <ActivityIndicator color="#FFFFFF" /> : (
+                  <Text style={{ color: '#FFFFFF', fontWeight: '800', fontSize: 15 }}>
                     {editing ? 'Save Changes' : 'Create Product'}
                   </Text>
                 )}
@@ -512,8 +512,8 @@ function CategoriesSection() {
           onPress={openCreate}
           style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: C.green, borderRadius: 10, paddingHorizontal: 14, paddingVertical: 8, gap: 6 }}
         >
-          <Ionicons name="add" size={18} color="#000" />
-          <Text style={{ color: '#000', fontWeight: '700', fontSize: 13 }}>Add</Text>
+          <Ionicons name="add" size={18} color="#FFFFFF" />
+          <Text style={{ color: '#FFFFFF', fontWeight: '700', fontSize: 13 }}>Add</Text>
         </TouchableOpacity>
       </View>
 
@@ -597,8 +597,8 @@ function CategoriesSection() {
               onPress={handleSave} disabled={saving}
               style={{ backgroundColor: C.green, borderRadius: 12, paddingVertical: 15, alignItems: 'center', marginTop: 8, opacity: saving ? 0.6 : 1 }}
             >
-              {saving ? <ActivityIndicator color="#000" /> : (
-                <Text style={{ color: '#000', fontWeight: '800', fontSize: 15 }}>
+              {saving ? <ActivityIndicator color="#FFFFFF" /> : (
+                <Text style={{ color: '#FFFFFF', fontWeight: '800', fontSize: 15 }}>
                   {editing ? 'Save Changes' : 'Create Category'}
                 </Text>
               )}

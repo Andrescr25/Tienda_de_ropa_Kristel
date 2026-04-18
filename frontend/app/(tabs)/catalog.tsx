@@ -27,24 +27,24 @@ function ProductCard({ item }: { item: any }) {
   const router = useRouter();
   return (
     <TouchableOpacity
-      style={{ flex: 1, backgroundColor: '#141414', borderColor: '#2A2A2A', borderWidth: 1, borderRadius: 16, overflow: 'hidden', margin: 6 }}
+      style={{ flex: 1, backgroundColor: '#FFFFFF', borderColor: '#EBDDE0', borderWidth: 1, borderRadius: 16, overflow: 'hidden', margin: 6 }}
       onPress={() => router.push(`/product/${item.id}`)}
       activeOpacity={0.85}
     >
       {item.imageUrl ? (
-        <Image source={{ uri: item.imageUrl }} style={{ width: '100%', height: 192, backgroundColor: '#1E1E1E' }} resizeMode="cover" />
+        <Image source={{ uri: item.imageUrl }} style={{ width: '100%', height: 192, backgroundColor: '#FFF0F3' }} resizeMode="cover" />
       ) : (
-        <View style={{ width: '100%', height: 192, backgroundColor: '#1E1E1E', alignItems: 'center', justifyContent: 'center' }}>
-          <Ionicons name="shirt-outline" size={52} color="#3A3A3A" />
+        <View style={{ width: '100%', height: 192, backgroundColor: '#FFF0F3', alignItems: 'center', justifyContent: 'center' }}>
+          <Ionicons name="shirt-outline" size={52} color="#D1C0C4" />
         </View>
       )}
       <View style={{ padding: 12 }}>
-        <Text style={{ color: '#FFF', fontWeight: '600', fontSize: 13 }} numberOfLines={1}>{item.name}</Text>
+        <Text style={{ color: '#1A1114', fontWeight: '600', fontSize: 13 }} numberOfLines={1}>{item.name}</Text>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 4 }}>
-          <Text style={{ color: '#00FF87', fontWeight: '700' }}>${item.price}</Text>
+          <Text style={{ color: '#FF6B98', fontWeight: '700' }}>${item.price}</Text>
           <View style={{ flexDirection: 'row', gap: 4 }}>
             {item.sizes?.slice(0, 3).map((s: any) => (
-              <Text key={s.size} style={{ color: '#666', fontSize: 10 }}>{s.size}</Text>
+              <Text key={s.size} style={{ color: '#88797D', fontSize: 10 }}>{s.size}</Text>
             ))}
           </View>
         </View>
@@ -73,17 +73,17 @@ export default function CatalogScreen() {
     : allProducts;
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#0A0A0A' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#FCFAFA' }}>
       <View style={{ paddingHorizontal: 16, paddingTop: 16, paddingBottom: 8 }}>
-        <Text style={{ color: '#FFF', fontSize: 24, fontWeight: '900', letterSpacing: 3, marginBottom: 16 }}>SHOP</Text>
+        <Text style={{ color: '#1A1114', fontSize: 24, fontWeight: '900', letterSpacing: 3, marginBottom: 16 }}>SHOP</Text>
 
         {/* Search */}
-        <View style={{ backgroundColor: '#141414', borderColor: '#2A2A2A', borderWidth: 1, borderRadius: 12, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, marginBottom: 16 }}>
-          <Ionicons name="search-outline" size={18} color="#666" style={{ marginRight: 8 }} />
+        <View style={{ backgroundColor: '#FFFFFF', borderColor: '#EBDDE0', borderWidth: 1, borderRadius: 12, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, marginBottom: 16 }}>
+          <Ionicons name="search-outline" size={18} color="#88797D" style={{ marginRight: 8 }} />
           <TextInput
-            style={{ flex: 1, color: '#FFF', paddingVertical: 12 }}
+            style={{ flex: 1, color: '#1A1114', paddingVertical: 12 }}
             placeholder="Search products..."
-            placeholderTextColor="#666"
+            placeholderTextColor="#88797D"
             value={search}
             onChangeText={setSearch}
           />
@@ -100,11 +100,11 @@ export default function CatalogScreen() {
               onPress={() => setSelectedCategory(item.id)}
               style={{
                 paddingHorizontal: 16, paddingVertical: 8, borderRadius: 99, marginRight: 8, borderWidth: 1,
-                backgroundColor: selectedCategory === item.id ? '#00FF87' : '#141414',
-                borderColor: selectedCategory === item.id ? '#00FF87' : '#2A2A2A',
+                backgroundColor: selectedCategory === item.id ? '#FF6B98' : '#FFFFFF',
+                borderColor: selectedCategory === item.id ? '#FF6B98' : '#EBDDE0',
               }}
             >
-              <Text style={{ fontSize: 13, fontWeight: '600', color: selectedCategory === item.id ? '#000' : '#FFF' }}>
+              <Text style={{ fontSize: 13, fontWeight: '600', color: selectedCategory === item.id ? '#FFFFFF' : '#1A1114' }}>
                 {item.name}
               </Text>
             </TouchableOpacity>
@@ -114,7 +114,7 @@ export default function CatalogScreen() {
       </View>
 
       {isLoading ? (
-        <ActivityIndicator color="#00FF87" style={{ flex: 1 }} size="large" />
+        <ActivityIndicator color="#FF6B98" style={{ flex: 1 }} size="large" />
       ) : (
         <FlatList
           data={filtered}
@@ -124,11 +124,11 @@ export default function CatalogScreen() {
           renderItem={({ item }) => <ProductCard item={item} />}
           onEndReached={() => hasNextPage && fetchNextPage()}
           onEndReachedThreshold={0.5}
-          ListFooterComponent={isFetchingNextPage ? <ActivityIndicator color="#00FF87" style={{ paddingVertical: 16 }} /> : null}
+          ListFooterComponent={isFetchingNextPage ? <ActivityIndicator color="#FF6B98" style={{ paddingVertical: 16 }} /> : null}
           ListEmptyComponent={
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingVertical: 80 }}>
-              <Ionicons name="shirt-outline" size={56} color="#3A3A3A" />
-              <Text style={{ color: '#666', fontSize: 15, marginTop: 12 }}>No products found</Text>
+              <Ionicons name="shirt-outline" size={56} color="#D1C0C4" />
+              <Text style={{ color: '#88797D', fontSize: 15, marginTop: 12 }}>No products found</Text>
             </View>
           }
         />
