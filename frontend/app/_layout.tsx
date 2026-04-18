@@ -42,9 +42,9 @@ export default function RootLayout() {
     <QueryClientProvider client={queryClient}>
       <StatusBar style="light" />
       <AuthGuard>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(auth)" />
+        <Stack screenOptions={{ headerShown: false }} initialRouteName="(tabs)">
           <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="(auth)" />
           <Stack.Screen
             name="product/[id]"
             options={{ presentation: 'card', headerShown: false }}
