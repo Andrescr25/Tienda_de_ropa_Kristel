@@ -14,6 +14,7 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithCredential,
+  signInWithPopup,
 } from 'firebase/auth';
 import * as AuthSession from 'expo-auth-session';
 import * as WebBrowser from 'expo-web-browser';
@@ -53,11 +54,16 @@ export default function LoginScreen() {
   const handleGoogleLogin = async () => {
     setLoading(true);
     try {
-      const result = await promptAsync();
-      if (result.type === 'success') {
-        const { id_token, access_token } = result.params;
-        const credential = GoogleAuthProvider.credential(id_token, access_token);
-        await signInWithCredential(auth, credential);
+      if (Platform.OS === 'web') {
+        const provider = new GoogleAuthProvider();
+        await signInWithPopup(auth, provider);
+      } else {
+        const result = await promptAsync();
+        if (result && result.type === 'success') {
+          const { id_token, access_token } = result.params;
+          const credential = GoogleAuthProvider.credential(id_token, access_token);
+          await signInWithCredential(auth, credential);
+        }
       }
     } catch (e: any) {
       Alert.alert('Google login failed', e.message);

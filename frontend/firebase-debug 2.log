@@ -1,0 +1,16 @@
+[debug] [2026-04-18T04:18:46.846Z] ----------------------------------------------------------------------
+[debug] [2026-04-18T04:18:46.847Z] Command:       /opt/homebrew/Cellar/node/25.8.2/bin/node /opt/homebrew/bin/firebase deploy --only hosting:bellafitnes
+[debug] [2026-04-18T04:18:46.847Z] CLI Version:   15.15.0
+[debug] [2026-04-18T04:18:46.847Z] Platform:      darwin
+[debug] [2026-04-18T04:18:46.847Z] Node Version:  v25.8.2
+[debug] [2026-04-18T04:18:46.848Z] Time:          Fri Apr 17 2026 22:18:46 GMT-0600 (Central Standard Time)
+[debug] [2026-04-18T04:18:46.848Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-04-18T04:18:47.641Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-18T04:18:47.642Z] > authorizing via signed-in user (javargas360@gmail.com)
+[debug] [2026-04-18T04:18:47.642Z] [iam] checking project tienda-gymshar for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-04-18T04:18:47.642Z] Checked if tokens are valid: true, expires at: 1776487391797
+[debug] [2026-04-18T04:18:47.642Z] Checked if tokens are valid: true, expires at: 1776487391797
+[debug] [2026-04-18T04:18:47.643Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/tienda-gymshar:testIamPermissions [none]
+[debug] [2026-04-18T04:18:47.643Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/tienda-gymshar:testIamPermissions  x-goog-user-project=tienda-gymshar
+[debug] [2026-04-18T04:18:47.643Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/tienda-gymshar:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
