@@ -74,7 +74,7 @@ export default function LoginScreen() {
       <View className="flex-1 justify-center px-6">
         {/* Logo / Brand */}
         <View className="items-center mb-12">
-          <Text className="text-5xl font-black text-gs-white tracking-widest">TIENDA</Text>
+          <Text className="text-5xl font-black text-gs-white tracking-widest">Bella Fitnes</Text>
           <Text className="text-gs-green text-sm tracking-[6px] mt-1 uppercase">Store</Text>
         </View>
 

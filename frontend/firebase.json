@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "bellafitnes",
     "public": "dist",
     "ignore": [
       "firebase.json",
