@@ -4,7 +4,7 @@ import { auth } from './firebase';
 // Point to your local backend (update for production)
 const BASE_URL = __DEV__
   ? 'http://localhost:3000/api'
-  : 'https://your-production-api.com/api';
+  : 'https://tienda-de-ropa-kristel.onrender.com/api';
 
 const api = axios.create({
   baseURL: BASE_URL,
