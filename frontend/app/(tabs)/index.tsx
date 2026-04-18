@@ -10,11 +10,9 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
-import { signOut } from 'firebase/auth';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import api from '@/lib/api';
-import { auth } from '@/lib/firebase';
 import { useAuthStore } from '@/store/authStore';
 
 const { width } = Dimensions.get('window');
@@ -99,7 +97,6 @@ export default function HomeScreen() {
     queryFn: () => api.get('/products?limit=6').then((r) => r.data.products),
   });
 
-  const handleSignOut = () => signOut(auth);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#FCFAFA' }}>
@@ -107,18 +104,11 @@ export default function HomeScreen() {
         {/* Header */}
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 16, marginBottom: 8 }}>
           <View>
-            <Text style={{ color: '#88797D', fontSize: 11, letterSpacing: 2, textTransform: 'uppercase' }}>Welcome back</Text>
+            <Text style={{ color: '#88797D', fontSize: 11, letterSpacing: 2, textTransform: 'uppercase' }}>Welcome to Bella Fitnes</Text>
             <Text style={{ color: '#1A1114', fontSize: 20, fontWeight: '700' }}>
-              {profile?.displayName?.split(' ')[0] ?? 'Athlete'}
+              {profile?.displayName?.split(' ')[0] ?? 'Beautiful'}
             </Text>
           </View>
-          <TouchableOpacity
-            onPress={handleSignOut}
-            style={{ backgroundColor: '#FFF0F3', borderColor: '#EBDDE0', borderWidth: 1, borderRadius: 12, paddingHorizontal: 14, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', gap: 6 }}
-          >
-            <Ionicons name="log-out-outline" size={16} color="#88797D" />
-            <Text style={{ color: '#88797D', fontSize: 13 }}>Sign Out</Text>
-          </TouchableOpacity>
         </View>
 
         {/* Promo Slider */}
