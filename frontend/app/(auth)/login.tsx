@@ -141,7 +141,7 @@ export default function LoginScreen() {
           <TouchableOpacity
             className="bg-gs-surface rounded-xl py-4 items-center border border-gs-border"
             onPress={handleGoogleLogin}
-            disabled={!request || loading}
+            disabled={loading || (Platform.OS !== 'web' && !request)}
             activeOpacity={0.85}
           >
             <Text className="text-gs-white font-semibold tracking-wide">Continue with Google</Text>
