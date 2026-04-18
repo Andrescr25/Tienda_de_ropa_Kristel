@@ -4,7 +4,7 @@ import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDq-n-cz3Fa4VmrxJ3gQ-YdlJHXGEhkSfQ',
-  authDomain: 'tienda-gymshar.firebaseapp.com',
+  authDomain: 'bellafitnes.web.app',
   projectId: 'tienda-gymshar',
   storageBucket: 'tienda-gymshar.firebasestorage.app',
   messagingSenderId: '968449752474',
