@@ -15,6 +15,7 @@ import {
   GoogleAuthProvider,
   signInWithCredential,
   signInWithPopup,
+  signInWithRedirect,
 } from 'firebase/auth';
 import * as AuthSession from 'expo-auth-session';
 import * as WebBrowser from 'expo-web-browser';
@@ -56,7 +57,7 @@ export default function LoginScreen() {
     try {
       if (Platform.OS === 'web') {
         const provider = new GoogleAuthProvider();
-        await signInWithPopup(auth, provider);
+        await signInWithRedirect(auth, provider);
       } else {
         const result = await promptAsync();
         if (result && result.type === 'success') {
