@@ -84,6 +84,10 @@ export default function RootLayout() {
             name="product/[id]"
             options={{ presentation: 'card', headerShown: false }}
           />
+          <Stack.Screen
+            name="profile"
+            options={{ presentation: 'modal', headerShown: false }}
+          />
         </Stack>
       </AuthGuard>
     </QueryClientProvider>

@@ -109,6 +109,22 @@ export default function HomeScreen() {
               {profile?.displayName?.split(' ')[0] ?? 'Beautiful'}
             </Text>
           </View>
+
+          {profile ? (
+            <TouchableOpacity onPress={() => router.push('/profile')} activeOpacity={0.7} style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: '#FFF0F3', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+              {profile.photoURL ? (
+                <Image source={{ uri: profile.photoURL }} style={{ width: '100%', height: '100%' }} />
+              ) : (
+                <Text style={{ fontSize: 18, fontWeight: '800', color: '#FF6B98' }}>
+                  {profile.displayName ? profile.displayName.charAt(0).toUpperCase() : '?'}
+                </Text>
+              )}
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={() => router.push('/(auth)/login')} activeOpacity={0.7} style={{ backgroundColor: '#FF6B98', borderRadius: 12, paddingHorizontal: 16, paddingVertical: 8 }}>
+              <Text style={{ color: '#FFFFFF', fontSize: 13, fontWeight: '700' }}>Sign In</Text>
+            </TouchableOpacity>
+          )}
         </View>
 
         {/* Promo Slider */}
