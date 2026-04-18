@@ -91,6 +91,7 @@ function ProductCard({ item }: { item: any }) {
 }
 
 export default function HomeScreen() {
+  const router = useRouter();
   const { profile } = useAuthStore();
   const { data, isLoading } = useQuery({
     queryKey: ['products', 'featured'],
