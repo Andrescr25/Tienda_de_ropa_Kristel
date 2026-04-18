@@ -203,6 +203,7 @@ function ProductsSection() {
     sizes: DEFAULT_SIZES.map(s => ({ size: s, stock: '0' })),
   });
   const [form, setForm] = useState(emptyForm());
+  const [confirmData, setConfirmData] = useState<{ id: string, name: string, type: 'product' | 'category' } | null>(null);
 
   const load = useCallback(() => {
     setLoading(true);
@@ -270,9 +271,7 @@ function ProductsSection() {
 
   const handleDelete = (id: string, name: string) => {
     if (Platform.OS === 'web') {
-      if (window.confirm(`Deactivate "${name}"?`)) {
-        api.delete(`/products/${id}`).then(load).catch(e => alert(e.message));
-      }
+      setConfirmData({ id, name, type: 'product' });
       return;
     }
     Alert.alert('Deactivate', `Deactivate "${name}"?`, [
@@ -459,6 +458,42 @@ function ProductsSection() {
           </SafeAreaView>
         </KeyboardAvoidingView>
       </Modal>
+
+      {/* Confirmation Modal - Products */}
+      <Modal visible={!!confirmData} animationType="fade" transparent>
+        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 24 }}>
+          <View style={{ width: '100%', maxWidth: 400, backgroundColor: C.surface, borderRadius: 16, padding: 24, borderWidth: 1, borderColor: C.border }}>
+            <Text style={{ color: C.white, fontSize: 18, fontWeight: '700', marginBottom: 16 }}>Confirm Deletion</Text>
+            <Text style={{ color: C.muted, fontSize: 15, marginBottom: 24, lineHeight: 22 }}>
+              Are you sure you want to delete "{confirmData?.name}"?
+            </Text>
+            <View style={{ flexDirection: 'row', gap: 12 }}>
+              <TouchableOpacity
+                onPress={() => setConfirmData(null)}
+                style={{ flex: 1, paddingVertical: 14, alignItems: 'center', borderRadius: 10, backgroundColor: 'transparent', borderWidth: 1, borderColor: C.border }}
+              >
+                <Text style={{ color: C.white, fontWeight: '600' }}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={async () => {
+                  if (!confirmData) return;
+                  try {
+                    await api.delete(`/products/${confirmData.id}`);
+                    load();
+                  } catch (e: any) {
+                    alert(e.message);
+                  } finally {
+                    setConfirmData(null);
+                  }
+                }}
+                style={{ flex: 1, paddingVertical: 14, alignItems: 'center', borderRadius: 10, backgroundColor: '#EF4444' }}
+              >
+                <Text style={{ color: '#FFFFFF', fontWeight: '700' }}>Delete</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </>
   );
 }
@@ -471,6 +506,7 @@ function CategoriesSection() {
   const [editing, setEditing]           = useState<Category | null>(null);
   const [saving, setSaving]             = useState(false);
   const [form, setForm] = useState({ name: '', description: '', imageUrl: '' });
+  const [confirmData, setConfirmData] = useState<{ id: string, name: string } | null>(null);
 
   const load = useCallback(() => {
     setLoading(true);
@@ -498,11 +534,9 @@ function CategoriesSection() {
     finally { setSaving(false); }
   };
 
-  const handleDelete = (id: string, name: string) => {
+  const deleteCat = (id: string, name: string) => {
     if (Platform.OS === 'web') {
-      if (window.confirm(`Delete category "${name}"?`)) {
-        api.delete(`/categories/${id}`).then(load).catch(e => alert(e.message));
-      }
+      setConfirmData({ id, name, type: 'category' });
       return;
     }
     Alert.alert('Delete', `Delete category "${name}"?`, [
@@ -617,6 +651,42 @@ function CategoriesSection() {
             </TouchableOpacity>
           </ScrollView>
         </SafeAreaView>
+      </Modal>
+
+      {/* Confirmation Modal - Categories */}
+      <Modal visible={!!confirmData} animationType="fade" transparent>
+        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 24 }}>
+          <View style={{ width: '100%', maxWidth: 400, backgroundColor: C.surface, borderRadius: 16, padding: 24, borderWidth: 1, borderColor: C.border }}>
+            <Text style={{ color: C.white, fontSize: 18, fontWeight: '700', marginBottom: 16 }}>Confirm Deletion</Text>
+            <Text style={{ color: C.muted, fontSize: 15, marginBottom: 24, lineHeight: 22 }}>
+              Are you sure you want to delete "{confirmData?.name}"?
+            </Text>
+            <View style={{ flexDirection: 'row', gap: 12 }}>
+              <TouchableOpacity
+                onPress={() => setConfirmData(null)}
+                style={{ flex: 1, paddingVertical: 14, alignItems: 'center', borderRadius: 10, backgroundColor: 'transparent', borderWidth: 1, borderColor: C.border }}
+              >
+                <Text style={{ color: C.white, fontWeight: '600' }}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={async () => {
+                  if (!confirmData) return;
+                  try {
+                    await api.delete(`/categories/${confirmData.id}`);
+                    load();
+                  } catch (e: any) {
+                    alert(e.message);
+                  } finally {
+                    setConfirmData(null);
+                  }
+                }}
+                style={{ flex: 1, paddingVertical: 14, alignItems: 'center', borderRadius: 10, backgroundColor: '#EF4444' }}
+              >
+                <Text style={{ color: '#FFFFFF', fontWeight: '700' }}>Delete</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
       </Modal>
     </>
   );
